@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "mission_id": "replace-mission-id",
+  "revision": 1,
+  "updated_at": "2026-09-12T00:00:00Z",
+  "status": "draft",
+  "objective": "REPLACE: requested outcome",
+  "owner": "Captain",
+  "scope": {"included": ["REPLACE: boundaries"], "excluded": []},
+  "sources": [],
+  "facts": [],
+  "capabilities": [],
+  "dependencies": [],
+  "authority": {
+    "request_reference": "REPLACE: user request reference",
+    "allowed_green_actions": [],
+    "grants": [],
+    "proposed_red_actions": []
+  },
+  "acceptance_criteria": [{"id": "ac-1", "condition": "REPLACE: observable result", "verification_method": "REPLACE: evidence to inspect"}],
+  "deliverables": ["REPLACE: expected output"],
+  "open_questions": []
+}

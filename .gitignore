@@ -1,0 +1,10 @@
+# Real mission data belongs outside this repository.
+runtime/
+private/
+local/
+artifacts/
+.env
+.env.*
+!.env.example
+*.log
+__pycache__/

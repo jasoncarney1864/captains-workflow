@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "mission_id": "example-mailrun-review",
+  "revision": 1,
+  "updated_at": "2026-09-12T00:00:00Z",
+  "status": "draft",
+  "objective": "Fictional example: identify actionable recruiter messages and provide a concise review packet.",
+  "owner": "Mailrun",
+  "scope": {
+    "included": ["Search is:unread in:inbox in the user-designated Gmail account", "Review recruiter and job messages in the returned scope"],
+    "excluded": ["Sending", "Creating Gmail drafts", "Attachments or uploads", "Cleanup or label changes", "Tracker writes"]
+  },
+  "sources": [{"id": "request", "reference": "fictional request: review my unread recruiter mail", "kind": "user_statement", "state": "available"}],
+  "facts": [],
+  "capabilities": [{"name": "Gmail scoped search and read", "required": true, "state": "unchecked"}],
+  "dependencies": [],
+  "authority": {
+    "request_reference": "fictional request: review my unread recruiter mail",
+    "allowed_green_actions": ["Read and assess messages within scope", "Compose response options in the review packet"],
+    "grants": [],
+    "proposed_red_actions": []
+  },
+  "acceptance_criteria": [
+    {"id": "ac-1", "condition": "Report actual coverage and relevant message references", "verification_method": "Inspect query, pagination, and retrieved message evidence"},
+    {"id": "ac-2", "condition": "Provide recommended next action and note unresolved fit or representation concerns", "verification_method": "Compare recommendations with retrieved messages and verified career evidence"},
+    {"id": "ac-3", "condition": "Perform no external writes", "verification_method": "Review action log for absence of write operations"}
+  ],
+  "deliverables": ["Review packet in chat: relevant messages, response options, risks, missing evidence, and recommended next actions"],
+  "open_questions": ["Resolve the user-designated account before execution; this fictional example supplies none."]
+}
