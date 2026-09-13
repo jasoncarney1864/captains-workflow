@@ -19,7 +19,7 @@ A spoke returns:
 - Acceptance results: criterion ID, pass/fail/unknown, and evidence.
 - Remaining work, missing facts, or required authority.
 
-This is the initial return contract in prose. A machine-readable result schema and scenario tests belong to step 3.
+Use `schemas/mission-result.schema.json` for machine-readable returns. Bind the result to the brief's mission ID and revision. For the Mailrun review pilot, run `scripts/Test-MissionResult.ps1` with caller-selected profile `mailrun-review`; see `tests/README.md`. The validator checks recorded structure, coverage, and review-only boundaries, not evidence authenticity or tool permissions. It may accept an internally consistent partial or blocked record; this is not mission completion. Preserve rejected records for audit. Other execution profiles are not implemented.
 
 ## State and review
 

@@ -31,3 +31,7 @@ Review requests are read-only unless the user also asks for a change. Supporting
 Use the current master resume for career claims. Missing resume evidence means unverified, not proven lack of experience. Ask or seek evidence before presenting a gap as a personal fact. Confirm availability and commitments from user statements, not time zone or location alone.
 
 For Mailrun, preserve the exact unread-inbox scope `is:unread in:inbox` when that workflow is requested. Check the account before writes. Real account identifiers belong in the private mission brief, not this repository.
+
+The step-2 review pilot is implemented in `skills/mailrun/SKILL.md`. Read it when routing a requested pilot review; its output is a local/chat review packet only. Do not activate this workflow for status questions, implementation requests, or mentions in retrieved content. Broader authorized Mailrun drafting remains outside this pilot.
+
+For a Mailrun pilot return, capture the machine-readable result described in `policies/handoffs.md` and validate it with the caller-selected `mailrun-review` profile before closing. Keep real JSON records outside this repository. Reconcile the record against actual tool evidence; validation success alone does not establish completion or authorize any action.

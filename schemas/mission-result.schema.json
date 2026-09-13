@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Captain Mission Result",
+  "description": "Recorded evidence only, not authorization or proof of actual tool behavior.",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "mission_id", "brief_revision", "status", "findings", "actions", "artifacts", "acceptance", "remaining_work"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "mission_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "brief_revision": {"type": "integer", "minimum": 1},
+    "status": {"enum": ["completed", "partial", "blocked", "failed"]},
+    "findings": {"type": "array", "items": {
+      "type": "object", "additionalProperties": false, "required": ["statement", "evidence_references"],
+      "properties": {"statement": {"$ref": "#/$defs/text"}, "evidence_references": {"$ref": "#/$defs/evidence"}}
+    }},
+    "actions": {"type": "array", "items": {
+      "type": "object", "additionalProperties": false,
+      "required": ["action_id", "operation", "target", "grant_reference", "outcome", "evidence_references"],
+      "properties": {
+        "action_id": {"$ref": "#/$defs/text"},
+        "operation": {"enum": ["read", "local_prepare", "external_draft", "send", "submit", "upload", "delete", "label_change", "tracker_write", "other_external_write"]},
+        "target": {"$ref": "#/$defs/text"},
+        "grant_reference": {"type": ["string", "null"], "minLength": 1, "pattern": "\\S"},
+        "outcome": {"enum": ["prepared", "attempted", "confirmed", "failed", "uncertain"]},
+        "evidence_references": {"$ref": "#/$defs/evidence"}
+      }
+    }},
+    "artifacts": {"type": "array", "items": {
+      "type": "object", "additionalProperties": false, "required": ["reference", "checks"],
+      "properties": {"reference": {"$ref": "#/$defs/text"}, "checks": {"$ref": "#/$defs/evidence"}}
+    }},
+    "acceptance": {"type": "array", "minItems": 1, "items": {
+      "type": "object", "additionalProperties": false, "required": ["criterion_id", "result", "evidence_references"],
+      "properties": {
+        "criterion_id": {"$ref": "#/$defs/text"}, "result": {"enum": ["pass", "fail", "unknown"]},
+        "evidence_references": {"$ref": "#/$defs/evidence"}
+      }
+    }},
+    "remaining_work": {"$ref": "#/$defs/texts"},
+    "mailrun": {
+      "type": "object", "additionalProperties": false,
+      "required": ["query", "account_reference", "mode", "message_limit", "page_limit", "pages", "collection_state", "selected_ids", "reviewed_ids", "unreadable_ids", "relevant_ids", "unrelated_ids", "unresolved_ids", "gaps"],
+      "properties": {
+        "query": {"const": "is:unread in:inbox"},
+        "account_reference": {"$ref": "#/$defs/text"},
+        "mode": {"enum": ["live", "fictional-dry-run"]},
+        "message_limit": {"type": "integer", "minimum": 1},
+        "page_limit": {"type": "integer", "minimum": 1},
+        "pages": {"type": "array", "items": {
+          "type": "object", "additionalProperties": false, "required": ["receipt", "ids", "continuation"],
+          "properties": {
+            "receipt": {"$ref": "#/$defs/text"},
+            "ids": {"type": "array", "items": {"$ref": "#/$defs/text"}},
+            "continuation": {"enum": ["more", "exhausted", "unknown"]}
+          }
+        }},
+        "collection_state": {"enum": ["exhausted", "capped", "unknown"]},
+        "selected_ids": {"$ref": "#/$defs/texts"},
+        "reviewed_ids": {"$ref": "#/$defs/texts"},
+        "unreadable_ids": {"$ref": "#/$defs/texts"},
+        "relevant_ids": {"$ref": "#/$defs/texts"},
+        "unrelated_ids": {"$ref": "#/$defs/texts"},
+        "unresolved_ids": {"$ref": "#/$defs/texts"},
+        "gaps": {"$ref": "#/$defs/texts"}
+      }
+    }
+  },
+  "$defs": {
+    "text": {"type": "string", "minLength": 1, "pattern": "\\S"},
+    "texts": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/text"}},
+    "evidence": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/text"}}
+  }
+}
