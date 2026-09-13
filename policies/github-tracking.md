@@ -26,6 +26,6 @@ Opening, editing, commenting on, or closing an Issue does not authorize any work
 
 ## GitHub Project
 
-The linked private Project is a view over the same Issues. Its `Kanban` Board view is grouped by the `Status` field: `Inbox`, `Ready`, `In progress`, `Waiting`, and `Done`. `Mission ID` and `Owner` are the only custom fields. Add open mission and blocker Issues as items, and archive completed or cancelled items only after their Issue history is complete.
+The linked private Project is a view over the same Issues. Its `Kanban` Board view is grouped by the `Status` field: `Inbox`, `Ready`, `In progress`, `Waiting`, and `Done`. `Mission ID` and `Owner` are the only custom fields. The enabled auto-add workflow adds open repository Issues labeled `owner: captain`; both supplied forms carry that label, and the enabled item-added workflow sets their initial status to `Inbox`. Any Issue outside that label contract must be added deliberately, not assumed to be tracked. Set the `Owner` field during triage. Archive completed or cancelled items only after their Issue history is complete.
 
 Keep the Project status aligned with the observed lifecycle. It is never a second authority record, nor a substitute for a Mission Brief or result. The Project remains private; do not substitute a public board.

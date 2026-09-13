@@ -91,7 +91,7 @@ No packages, real personal documents, mailbox calls, or application submissions 
 
 GitHub Issues are the private-safe index for framework missions and blockers. The Mission and Blocker forms keep objective, dependencies, ownership, authority boundaries, acceptance criteria, and resolution needs reviewable without copying runtime records into GitHub. Read `policies/github-tracking.md` before creating or closing an Issue. The repository supplies mission, blocker, owner, lifecycle, and priority labels; only actual observed state should change them.
 
-The linked private [Captain's Workflow Project](https://github.com/users/jasoncarney1864/projects/1) is a view over those Issues, not a competing source of truth. Its `Kanban` Board is grouped into `Inbox`, `Ready`, `In progress`, `Waiting`, and `Done`, with `Mission ID` and `Owner` fields on cards. Keep personal artifacts, messages, grants, and credentials outside GitHub.
+The linked private [Captain's Workflow Project](https://github.com/users/jasoncarney1864/projects/1) is a view over those Issues, not a competing source of truth. Its `Kanban` Board is grouped into `Inbox`, `Ready`, `In progress`, `Waiting`, and `Done`, with `Mission ID` and `Owner` fields on cards. The enabled Project auto-add workflow adds open repository Issues labeled `owner: captain`; the Mission and Blocker forms apply that label, and the existing item-added workflow places new cards in `Inbox`. Set the card's `Owner` field during Captain triage rather than assigning every new mission to a spoke automatically. Keep personal artifacts, messages, grants, and credentials outside GitHub.
 
 ## Design decisions
 
