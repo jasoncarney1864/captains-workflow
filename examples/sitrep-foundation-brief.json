@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "mission_id": "foundation-sitrep",
+  "revision": 1,
+  "updated_at": "2026-09-12T22:00:00Z",
+  "status": "ready",
+  "objective": "Summarize fictional workflow lanes without initiating their underlying work.",
+  "owner": "Sitrep",
+  "scope": {
+    "included": ["Read fictional mission outcomes", "Prepare a concise local status report"],
+    "excluded": ["Running Mailrun", "Changing trackers", "Creating external updates"]
+  },
+  "sources": [{"id": "fictional-missions", "reference": "synthetic mission-result fixture", "kind": "prior_result", "state": "available"}],
+  "facts": [{"statement": "The fixture contains only fictional mission states.", "source_ids": ["fictional-missions"], "verification": "observed"}],
+  "capabilities": [{"name": "local fixture reader", "required": true, "state": "available"}],
+  "dependencies": [],
+  "authority": {"request_reference": "foundation fixture", "allowed_green_actions": ["read fixture", "prepare local Sitrep"], "grants": [], "proposed_red_actions": []},
+  "acceptance_criteria": [
+    {"id": "ac-coverage", "condition": "Requested fictional lanes are accounted for", "verification_method": "recorded read receipt"},
+    {"id": "ac-sitrep", "condition": "A concise evidence-backed Sitrep is returned", "verification_method": "local artifact"},
+    {"id": "ac-no-write", "condition": "No underlying workflow is executed", "verification_method": "recorded operations"}
+  ],
+  "deliverables": ["fictional Sitrep"],
+  "open_questions": []
+}

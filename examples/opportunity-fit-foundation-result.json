@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "mission_id": "foundation-opportunity-fit",
+  "brief_revision": 1,
+  "status": "completed",
+  "findings": [{"statement": "The fictional sources support a local fit review with no downstream action.", "evidence_references": ["fictional-role", "fictional-career"]}],
+  "actions": [
+    {"action_id": "read-role", "operation": "read", "target": "synthetic role fixture", "grant_reference": null, "outcome": "confirmed", "evidence_references": ["fictional-role"]},
+    {"action_id": "prepare-review", "operation": "local_prepare", "target": "chat:fictional opportunity-fit review", "grant_reference": null, "outcome": "prepared", "evidence_references": ["fictional-role", "fictional-career"]}
+  ],
+  "artifacts": [{"reference": "chat:fictional opportunity-fit review", "checks": ["fictional-source grounding and no-write boundary recorded"]}],
+  "acceptance": [
+    {"criterion_id": "ac-sources", "result": "pass", "evidence_references": ["fictional-role", "fictional-career"]},
+    {"criterion_id": "ac-review", "result": "pass", "evidence_references": ["chat:fictional opportunity-fit review"]},
+    {"criterion_id": "ac-no-write", "result": "pass", "evidence_references": ["recorded operations"]}
+  ],
+  "remaining_work": []
+}

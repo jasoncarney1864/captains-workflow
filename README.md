@@ -1,6 +1,6 @@
 # Captain's Workflow
 
-Status: steps 1 through 4 and the GitHub Issues/Project tracking layer are implemented. Mailrun, Resume Studio, and Application Run are not installed globally; live connector, document-rendering, and submission integration have not been tested.
+Status: steps 1 through 4 and the GitHub Issues/Project tracking layer are implemented. Opportunity Fit, Tracker Steward, Interview Prep, and Sitrep have testable, read-only foundations. Mailrun, Opportunity Fit, Tracker Steward, Interview Prep, Sitrep, Resume Studio, and Application Run are not installed globally; live connector, document-rendering, and submission integration have not been tested.
 
 Permanent checkout: `C:\Repos\captains-workflow`.
 Private GitHub remote: `https://github.com/jasoncarney1864/captains-workflow`.
@@ -25,11 +25,16 @@ Captain is the coordinating role; Bilbi is the conversational identity. The fram
 - `templates/mission-brief.json`: copyable, structurally valid template; placeholders must be resolved before execution.
 - `examples/mailrun-review.json`: fictional read-only pilot brief; not a request to execute.
 - `skills/mailrun/SKILL.md`: repository-local Mailrun review workflow, with packet template in `assets/`.
+- `skills/opportunity-fit/SKILL.md`: repository-local role-research and candid-fit workflow, with a review template in `assets/`.
+- `skills/tracker-steward/SKILL.md`: repository-local tracker-inspection and change-plan workflow, with no write authority.
+- `skills/interview-prep/SKILL.md`: repository-local, evidence-grounded interview-preparation workflow.
+- `skills/sitrep/SKILL.md`: repository-local evidence-backed status-reporting workflow.
 - `examples/mailrun-inbox-fixture.json`: synthetic paginated inbox, including duplicate IDs, overlapping recruiters, untrusted instructions, and an unreadable message.
 - `examples/mailrun-review-packet.md`: worked dry-run result with explicit partial coverage and evidence accounting.
 - `schemas/mission-result.schema.json` and `examples/mailrun-result.json`: machine-readable return contract and synthetic partial result.
 - `scripts/Test-MissionResult.ps1`: offline result/brief validator for the read-only Mailrun profile.
 - `tests/README.md`: test command, coverage, and explicit validation limits.
+- `tests/Run-FoundationSpokeTests.ps1`: synthetic read-only contract exercises for Tracker Steward, Interview Prep, and Sitrep.
 - `policies/github-tracking.md`: GitHub Issue lifecycle, privacy, authority, and Project-view rules.
 - `.github/ISSUE_TEMPLATE/`: private-safe Mission and Blocker issue forms.
 
@@ -50,6 +55,24 @@ To exercise the pilot without mailbox access, ask Captain to use `skills/mailrun
 For a live run, explicitly request a read-only Mailrun pilot and identify the account through private context. Captain resolves a real brief and checks read-only capability before collection. Default limits are 25 unique messages and 5 page calls; the query remains exactly `is:unread in:inbox`. The output is a chat review packet, not a Gmail draft. Existing globally installed Mailrun behavior is unchanged.
 
 Step 2 verification covers skill structure, reference resolution, brief validity, and a local fictional dry run. Step 3 adds machine-readable return validation and automated malformed-record and review-boundary tests. Neither proves connector integration, autonomous model behavior, or enforcement of authority at the tool boundary.
+
+## Opportunity Fit
+
+Opportunity Fit is the read-only assessment spoke: it verifies a role source, separates company requirements from candidate evidence, identifies strengths and unverified requirements, and returns a candid `pursue`, `clarify`, `hold`, or `no action` recommendation. Its template is under `skills/opportunity-fit/assets/fit-review.md`.
+
+A fit review does not create a resume, begin an application, send a message, or change a tracker. Those outcomes require separate user requests and route to their respective spokes. The current slice is an instruction-and-template foundation; it has no live job-source or resume integration test.
+
+## Remaining spoke foundations
+
+Opportunity Fit, Tracker Steward, Interview Prep, and Sitrep now have repository-local skills, local templates, and synthetic brief/result exercises. The foundation suite runs those records through the shared Mission Brief and Mission Result schemas and verifies a Green-only boundary: fixture runs may read and prepare local material, but may not write a tracker, schedule or contact anyone, or start underlying workflows.
+
+Run their foundation suite with PowerShell 7.4+:
+
+```powershell
+pwsh -NoProfile -File C:\Repos\captains-workflow\tests\Run-FoundationSpokeTests.ps1
+```
+
+The suite is not a live integration test and does not prove source availability, tool permissions, or the truth of a real assessment. Deepening each spoke should add the smallest domain-specific contract only when a real workflow shows that the shared contract is insufficient.
 
 ## Career slice
 

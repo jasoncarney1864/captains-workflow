@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "mission_id": "foundation-opportunity-fit",
+  "revision": 1,
+  "updated_at": "2026-09-12T22:00:00Z",
+  "status": "ready",
+  "objective": "Assess a fictional role against fictional candidate evidence without creating an application artifact.",
+  "owner": "Opportunity Fit",
+  "scope": {
+    "included": ["Read fictional role and career sources", "Prepare a candid local fit review"],
+    "excluded": ["Creating a resume", "Submitting an application", "Writing a tracker"]
+  },
+  "sources": [
+    {"id": "fictional-role", "reference": "synthetic role fixture", "kind": "file", "state": "available"},
+    {"id": "fictional-career", "reference": "synthetic career fixture", "kind": "file", "state": "available"}
+  ],
+  "facts": [{"statement": "All role and career facts in this fixture are fictional.", "source_ids": ["fictional-role", "fictional-career"], "verification": "observed"}],
+  "capabilities": [{"name": "local fixture reader", "required": true, "state": "available"}],
+  "dependencies": [],
+  "authority": {"request_reference": "foundation fixture", "allowed_green_actions": ["read fixtures", "prepare local fit review"], "grants": [], "proposed_red_actions": []},
+  "acceptance_criteria": [
+    {"id": "ac-sources", "condition": "Role and career fixture sources are accounted for", "verification_method": "recorded read receipts"},
+    {"id": "ac-review", "condition": "A candid local fit review is returned", "verification_method": "local artifact"},
+    {"id": "ac-no-write", "condition": "No external action occurs", "verification_method": "recorded operations"}
+  ],
+  "deliverables": ["fictional opportunity-fit review"],
+  "open_questions": []
+}

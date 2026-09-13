@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "mission_id": "foundation-tracker-steward",
+  "revision": 1,
+  "updated_at": "2026-09-12T22:00:00Z",
+  "status": "ready",
+  "objective": "Review a fictional tracker snapshot and prepare a no-write change plan.",
+  "owner": "Tracker Steward",
+  "scope": {
+    "included": ["Read the fictional tracker snapshot", "Prepare a field-level change plan"],
+    "excluded": ["Writing a tracker", "Deleting history", "Creating applications"]
+  },
+  "sources": [{"id": "fictional-tracker", "reference": "synthetic foundation fixture", "kind": "file", "state": "available"}],
+  "facts": [{"statement": "All fixture records are fictional.", "source_ids": ["fictional-tracker"], "verification": "observed"}],
+  "capabilities": [{"name": "local fixture reader", "required": true, "state": "available"}],
+  "dependencies": [],
+  "authority": {"request_reference": "foundation fixture", "allowed_green_actions": ["read fixture", "prepare local plan"], "grants": [], "proposed_red_actions": []},
+  "acceptance_criteria": [
+    {"id": "ac-source", "condition": "Fixture source is accounted for", "verification_method": "recorded read receipt"},
+    {"id": "ac-plan", "condition": "A reviewable no-write plan is returned", "verification_method": "local artifact"},
+    {"id": "ac-no-write", "condition": "No external action occurs", "verification_method": "recorded operations"}
+  ],
+  "deliverables": ["fictional tracker review"],
+  "open_questions": []
+}

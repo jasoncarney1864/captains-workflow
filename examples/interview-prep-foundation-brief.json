@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "mission_id": "foundation-interview-prep",
+  "revision": 1,
+  "updated_at": "2026-09-12T22:00:00Z",
+  "status": "ready",
+  "objective": "Prepare a fictional interview brief using supplied role and career facts.",
+  "owner": "Interview Prep",
+  "scope": {
+    "included": ["Read fictional role and career facts", "Prepare local practice material"],
+    "excluded": ["Scheduling", "Sending messages", "Submitting an application"]
+  },
+  "sources": [
+    {"id": "fictional-role", "reference": "synthetic role fixture", "kind": "file", "state": "available"},
+    {"id": "fictional-career", "reference": "synthetic career fixture", "kind": "file", "state": "available"}
+  ],
+  "facts": [{"statement": "All role and career facts in this fixture are fictional.", "source_ids": ["fictional-role", "fictional-career"], "verification": "observed"}],
+  "capabilities": [{"name": "local fixture reader", "required": true, "state": "available"}],
+  "dependencies": [],
+  "authority": {"request_reference": "foundation fixture", "allowed_green_actions": ["read fixtures", "prepare local interview brief"], "grants": [], "proposed_red_actions": []},
+  "acceptance_criteria": [
+    {"id": "ac-sources", "condition": "Role and career fixture sources are accounted for", "verification_method": "recorded read receipts"},
+    {"id": "ac-brief", "condition": "A grounded local interview brief is returned", "verification_method": "local artifact"},
+    {"id": "ac-no-write", "condition": "No external action occurs", "verification_method": "recorded operations"}
+  ],
+  "deliverables": ["fictional interview brief"],
+  "open_questions": []
+}

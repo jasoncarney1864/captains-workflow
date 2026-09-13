@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "mission_id": "foundation-sitrep",
+  "brief_revision": 1,
+  "status": "completed",
+  "findings": [{"statement": "The fictional mission states support a compact reporting-only Sitrep.", "evidence_references": ["fictional-missions"]}],
+  "actions": [
+    {"action_id": "read-results", "operation": "read", "target": "synthetic mission-result fixture", "grant_reference": null, "outcome": "confirmed", "evidence_references": ["fictional-missions"]},
+    {"action_id": "prepare-sitrep", "operation": "local_prepare", "target": "chat:fictional Sitrep", "grant_reference": null, "outcome": "prepared", "evidence_references": ["fictional-missions"]}
+  ],
+  "artifacts": [{"reference": "chat:fictional Sitrep", "checks": ["fixture coverage and reporting-only boundary recorded"]}],
+  "acceptance": [
+    {"criterion_id": "ac-coverage", "result": "pass", "evidence_references": ["fictional-missions"]},
+    {"criterion_id": "ac-sitrep", "result": "pass", "evidence_references": ["chat:fictional Sitrep"]},
+    {"criterion_id": "ac-no-write", "result": "pass", "evidence_references": ["recorded operations"]}
+  ],
+  "remaining_work": []
+}
