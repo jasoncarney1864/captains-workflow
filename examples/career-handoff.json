@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "resume": {
+    "mission_id": "fictional-resume",
+    "result_reference": "fictional-resume-result",
+    "master_reference": "fictional-master#employment",
+    "master_read": true,
+    "artifact_path": "C:\\Fictional\\resume.docx",
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "state": "ready",
+    "source_employment_ids": ["role-1", "role-2"],
+    "output_employment_ids": ["role-1", "role-2"],
+    "claims": [
+      {"text": "Built event-driven services", "included": true, "verification": "master", "source_references": ["fictional-master#role-1"]},
+      {"text": "Led a global migration", "included": false, "verification": "unverified", "source_references": []}
+    ],
+    "qa": {
+      "package": {"result": "pass", "evidence": ["fictional package check"]},
+      "text": {"result": "pass", "evidence": ["fictional source comparison"]},
+      "visual": {"result": "pass", "evidence": ["fictional page inspection"]}
+    }
+  },
+  "application": {
+    "mission_id": "fictional-application", "brief_revision": 1, "state": "prepared",
+    "preview_reference": "fictional answer preview", "facts_resolved": true,
+    "planned_actions": [
+      {"action_id": "upload-1", "action": "upload", "destination": "ExampleCo job-42 / fictional account", "data_references": ["sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"], "scope": "Resume for job-42 only", "grant_reference": null},
+      {"action_id": "submit-1", "action": "submit", "destination": "ExampleCo job-42 / fictional account", "data_references": ["sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "fictional-answers-v1"], "scope": "Application for job-42 only", "grant_reference": null}
+    ],
+    "operations": [], "confirmation_references": []
+  }
+}

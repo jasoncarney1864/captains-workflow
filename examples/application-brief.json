@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0", "mission_id": "fictional-application", "revision": 1,
+  "updated_at": "2026-09-12T00:00:00Z", "status": "draft",
+  "objective": "Fictional example: prepare a local application preview, without transmitting it.",
+  "owner": "Application Run",
+  "scope": {"included": ["Local preview for ExampleCo job-42"], "excluded": ["External writes", "Tracker changes"]},
+  "sources": [{"id": "request", "reference": "fictional user request", "kind": "user_statement", "state": "available"}],
+  "facts": [], "capabilities": [],
+  "dependencies": [{"reference": "fictional-resume-result", "condition": "Ready verified resume", "state": "satisfied"}],
+  "authority": {"request_reference": "fictional user request", "allowed_green_actions": ["Prepare local answers"], "grants": [], "proposed_red_actions": []},
+  "acceptance_criteria": [{"id": "preview", "condition": "Reviewable local preview", "verification_method": "Inspect packet and actual source evidence"}],
+  "deliverables": ["Local application preview"]
+}

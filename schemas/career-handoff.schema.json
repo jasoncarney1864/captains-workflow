@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Career artifact and application handoff",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "resume"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "resume": {
+      "type": "object", "additionalProperties": false,
+      "required": ["mission_id", "result_reference", "master_reference", "master_read", "artifact_path", "sha256", "state", "source_employment_ids", "output_employment_ids", "claims", "qa"],
+      "properties": {
+        "mission_id": {"$ref": "#/$defs/text"}, "result_reference": {"$ref": "#/$defs/text"},
+        "master_reference": {"$ref": "#/$defs/text"}, "master_read": {"type": "boolean"},
+        "artifact_path": {"$ref": "#/$defs/text"}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "state": {"enum": ["draft", "ready", "blocked"]},
+        "source_employment_ids": {"$ref": "#/$defs/texts"}, "output_employment_ids": {"$ref": "#/$defs/texts"},
+        "claims": {"type": "array", "minItems": 1, "items": {
+          "type": "object", "additionalProperties": false, "required": ["text", "included", "verification", "source_references"],
+          "properties": {"text": {"$ref": "#/$defs/text"}, "included": {"type": "boolean"}, "verification": {"enum": ["master", "user_confirmed", "unverified"]}, "source_references": {"$ref": "#/$defs/texts"}}
+        }},
+        "qa": {
+          "type": "object", "additionalProperties": false, "required": ["package", "text", "visual"],
+          "properties": {"package": {"$ref": "#/$defs/check"}, "text": {"$ref": "#/$defs/check"}, "visual": {"$ref": "#/$defs/check"}}
+        }
+      }
+    },
+    "application": {
+      "type": "object", "additionalProperties": false,
+      "required": ["mission_id", "brief_revision", "state", "preview_reference", "facts_resolved", "planned_actions", "operations", "confirmation_references"],
+      "properties": {
+        "mission_id": {"$ref": "#/$defs/text"}, "brief_revision": {"type": "integer", "minimum": 1},
+        "state": {"enum": ["prepared", "authorized", "uncertain", "submitted"]},
+        "preview_reference": {"$ref": "#/$defs/text"}, "facts_resolved": {"type": "boolean"},
+        "planned_actions": {"type": "array", "minItems": 1, "items": {
+          "type": "object", "additionalProperties": false,
+          "required": ["action_id", "action", "destination", "data_references", "scope", "grant_reference"],
+          "properties": {
+            "action_id": {"$ref": "#/$defs/text"}, "action": {"enum": ["upload", "submit", "other_external_write"]},
+            "destination": {"$ref": "#/$defs/text"}, "data_references": {"$ref": "#/$defs/evidence"},
+            "scope": {"$ref": "#/$defs/text"}, "grant_reference": {"type": ["string", "null"], "minLength": 1}
+          }
+        }},
+        "operations": {"type": "array", "items": {
+          "type": "object", "additionalProperties": false, "required": ["action_id", "outcome", "at", "evidence_references"],
+          "properties": {
+            "action_id": {"$ref": "#/$defs/text"}, "outcome": {"enum": ["attempted", "confirmed", "failed", "uncertain"]},
+            "at": {"type": "string", "format": "date-time"}, "evidence_references": {"$ref": "#/$defs/evidence"}
+          }
+        }},
+        "confirmation_references": {"$ref": "#/$defs/texts"}
+      }
+    }
+  },
+  "$defs": {
+    "text": {"type": "string", "minLength": 1, "pattern": "\\S"},
+    "texts": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/text"}},
+    "evidence": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/text"}},
+    "check": {"type": "object", "additionalProperties": false, "required": ["result", "evidence"], "properties": {"result": {"enum": ["pass", "fail", "unknown"]}, "evidence": {"$ref": "#/$defs/evidence"}}}
+  }
+}

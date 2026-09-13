@@ -1,6 +1,6 @@
 # Captain's Workflow
 
-Status: steps 1 through 3 implemented. The Mailrun pilot is a repository-local, read-only skill with a fictional dry run and offline result-contract tests. It has not been installed globally or exercised against a live inbox.
+Status: steps 1 through 4 implemented as repository-local workflows with offline contract tests. Mailrun, Resume Studio, and Application Run are not installed globally; live connector, document-rendering, and submission integration have not been tested.
 
 Permanent checkout: `C:\Repos\captains-workflow`.
 Private GitHub remote: `https://github.com/jasoncarney1864/captains-workflow`.
@@ -13,8 +13,8 @@ Captain is the coordinating role; Bilbi is the conversational identity. The fram
 1. **Complete:** shared policies and Mission Brief schema.
 2. **Complete:** Mailrun pilot, producing a review packet from a bounded inbox scope.
 3. **Complete:** result contract and offline Mailrun review-boundary tests. These validate records, not runtime permissions.
-4. Next: Resume Studio and Application Run as dependent slices.
-5. GitHub Issues/Projects for missions and blockers.
+4. **Complete:** Resume Studio and Application Run skills, artifact handoff, and offline readiness/authorization checks.
+5. Next: GitHub Issues/Projects for missions and blockers.
 
 ## Files
 
@@ -48,6 +48,19 @@ To exercise the pilot without mailbox access, ask Captain to use `skills/mailrun
 For a live run, explicitly request a read-only Mailrun pilot and identify the account through private context. Captain resolves a real brief and checks read-only capability before collection. Default limits are 25 unique messages and 5 page calls; the query remains exactly `is:unread in:inbox`. The output is a chat review packet, not a Gmail draft. Existing globally installed Mailrun behavior is unchanged.
 
 Step 2 verification covers skill structure, reference resolution, brief validity, and a local fictional dry run. Step 3 adds machine-readable return validation and automated malformed-record and review-boundary tests. Neither proves connector integration, autonomous model behavior, or enforcement of authority at the tool boundary.
+
+## Career slice
+
+Read `policies/career-handoffs.md` for the Resume Studio → Application Run contract. The two new skill entrypoints are under `skills/resume-studio/` and `skills/application-run/`. `schemas/career-handoff.schema.json` defines the supplemental packet; `scripts/Test-CareerHandoff.ps1` checks readiness, artifact identity, exact declared grants, and recorded submission state. The fictional `examples/career-handoff.json` and `examples/application-brief.json` demonstrate local preparation without grants. Their QA and hash values are synthetic, not claims about an actual document.
+
+Run both suites with PowerShell 7.4+:
+
+```powershell
+pwsh -NoProfile -File C:\Repos\captains-workflow\tests\Run-ContractTests.ps1
+pwsh -NoProfile -File C:\Repos\captains-workflow\tests\Run-CareerTests.ps1
+```
+
+No packages, real personal documents, mailbox calls, or application submissions are needed for these tests. Real artifact checks require `-VerifyArtifact`; omitted verification is only appropriate for synthetic record testing. The validators are offline consistency checks, not permission enforcement or proof of historical authority.
 
 ## Design decisions
 

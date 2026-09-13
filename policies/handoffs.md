@@ -19,7 +19,7 @@ A spoke returns:
 - Acceptance results: criterion ID, pass/fail/unknown, and evidence.
 - Remaining work, missing facts, or required authority.
 
-Use `schemas/mission-result.schema.json` for machine-readable returns. Bind the result to the brief's mission ID and revision. For the Mailrun review pilot, run `scripts/Test-MissionResult.ps1` with caller-selected profile `mailrun-review`; see `tests/README.md`. The validator checks recorded structure, coverage, and review-only boundaries, not evidence authenticity or tool permissions. It may accept an internally consistent partial or blocked record; this is not mission completion. Preserve rejected records for audit. Other execution profiles are not implemented.
+Use `schemas/mission-result.schema.json` for machine-readable returns. Bind the result to the brief's mission ID and revision. For the Mailrun review pilot, run `scripts/Test-MissionResult.ps1` with caller-selected profile `mailrun-review`; see `tests/README.md`. The validator checks recorded structure, coverage, and review-only boundaries, not evidence authenticity or tool permissions. It may accept an internally consistent partial or blocked record; this is not mission completion. Preserve rejected records for audit. Resume Studio and Application Run use the supplemental career packet and separate validator described in `policies/career-handoffs.md`; the generic result schema still applies, with Captain reviewing its acceptance evidence.
 
 ## State and review
 
