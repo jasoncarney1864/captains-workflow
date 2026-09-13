@@ -1,0 +1,90 @@
+name: Mission
+description: Track one bounded, user-requested workflow outcome.
+title: "Mission: "
+labels: ["type: mission", "owner: captain"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use references and concise summaries only. Do not paste credentials, full resumes, emails, browser history, account identifiers, or other private runtime data.
+  - type: input
+    id: mission-id
+    attributes:
+      label: Mission ID
+      description: Stable private-safe identifier, for example `career-2026-09-12-exampleco`.
+      placeholder: lane-date-short-name
+    validations:
+      required: true
+  - type: dropdown
+    id: owner
+    attributes:
+      label: Owning spoke
+      options:
+        - Captain
+        - Mailrun
+        - Opportunity Fit
+        - Resume Studio
+        - Application Run
+        - Tracker Steward
+        - Interview Prep
+        - Sitrep
+    validations:
+      required: true
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective and bounded scope
+      description: State the requested outcome, in-scope work, and explicit exclusions.
+      placeholder: |
+        Outcome:
+        In scope:
+        Excluded:
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Sources, facts, and capabilities
+      description: Reference private records by label only; mark missing items as unknown.
+      placeholder: |
+        Sources:
+        Verified facts:
+        Required capability and state:
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and blockers
+      description: Link related issues where appropriate. State `none` if there are none.
+      placeholder: "Depends on #123; otherwise none"
+    validations:
+      required: true
+  - type: textarea
+    id: authority
+    attributes:
+      label: Authority boundary
+      description: List only user-approved external actions and their private evidence reference. Do not put approvals in this issue.
+      placeholder: |
+        Green work:
+        Approved external actions (if any):
+        Proposed but unapproved actions:
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria and evidence plan
+      description: Each criterion needs a pass/fail/unknown outcome and evidence reference.
+      placeholder: |
+        - AC1:
+        - AC2:
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: I used references rather than private runtime data, credentials, or personal documents.
+          required: true

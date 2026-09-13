@@ -1,6 +1,6 @@
 # Captain's Workflow
 
-Status: steps 1 through 4 implemented as repository-local workflows with offline contract tests. Mailrun, Resume Studio, and Application Run are not installed globally; live connector, document-rendering, and submission integration have not been tested.
+Status: steps 1 through 4 and the GitHub Issues/Project tracking layer are implemented. Mailrun, Resume Studio, and Application Run are not installed globally; live connector, document-rendering, and submission integration have not been tested.
 
 Permanent checkout: `C:\Repos\captains-workflow`.
 Private GitHub remote: `https://github.com/jasoncarney1864/captains-workflow`.
@@ -14,7 +14,7 @@ Captain is the coordinating role; Bilbi is the conversational identity. The fram
 2. **Complete:** Mailrun pilot, producing a review packet from a bounded inbox scope.
 3. **Complete:** result contract and offline Mailrun review-boundary tests. These validate records, not runtime permissions.
 4. **Complete:** Resume Studio and Application Run skills, artifact handoff, and offline readiness/authorization checks.
-5. Next: GitHub Issues/Projects for missions and blockers.
+5. **Complete:** private GitHub Issues/Project tracking for missions and blockers.
 
 ## Files
 
@@ -30,6 +30,8 @@ Captain is the coordinating role; Bilbi is the conversational identity. The fram
 - `schemas/mission-result.schema.json` and `examples/mailrun-result.json`: machine-readable return contract and synthetic partial result.
 - `scripts/Test-MissionResult.ps1`: offline result/brief validator for the read-only Mailrun profile.
 - `tests/README.md`: test command, coverage, and explicit validation limits.
+- `policies/github-tracking.md`: GitHub Issue lifecycle, privacy, authority, and Project-view rules.
+- `.github/ISSUE_TEMPLATE/`: private-safe Mission and Blocker issue forms.
 
 ## Use
 
@@ -61,6 +63,12 @@ pwsh -NoProfile -File C:\Repos\captains-workflow\tests\Run-CareerTests.ps1
 ```
 
 No packages, real personal documents, mailbox calls, or application submissions are needed for these tests. Real artifact checks require `-VerifyArtifact`; omitted verification is only appropriate for synthetic record testing. The validators are offline consistency checks, not permission enforcement or proof of historical authority.
+
+## GitHub tracking
+
+GitHub Issues are the private-safe index for framework missions and blockers. The Mission and Blocker forms keep objective, dependencies, ownership, authority boundaries, acceptance criteria, and resolution needs reviewable without copying runtime records into GitHub. Read `policies/github-tracking.md` before creating or closing an Issue. The repository supplies mission, blocker, owner, lifecycle, and priority labels; only actual observed state should change them.
+
+The linked private [Captain's Workflow Project](https://github.com/users/jasoncarney1864/projects/1) is a view over those Issues, not a competing source of truth. It has `Inbox`, `Ready`, `In progress`, `Waiting`, and `Done` statuses, plus `Mission ID` and `Owner` fields. Keep personal artifacts, messages, grants, and credentials outside GitHub.
 
 ## Design decisions
 
