@@ -10,7 +10,7 @@ Read the repository [authority policy](../../policies/authority.md) and [handoff
 ## Build the requested preparation
 
 - Receive a schema-valid Mission Brief with the interview context, available role sources, verified candidate evidence, desired preparation format, and acceptance criteria. Check whether the role description and career evidence are available; mark unavailable sources rather than silently using a stale summary.
-- Distill the role into interview themes, questions to expect, and questions Jason can ask. Ground sample responses and stories in supplied evidence, clearly marking preparation prompts or unknown details. Do not invent metrics, projects, people, outcomes, interviewers, or company facts.
+- Distill the role into interview themes, questions to expect, and questions the user can ask. Ground sample responses and stories in supplied evidence, clearly marking preparation prompts or unknown details. Do not invent metrics, projects, people, outcomes, interviewers, or company facts.
 - Match the requested scope: a concise brief, mock questions, answer outlines, follow-up text, or another local deliverable. Separate company/role research from candidate evidence. If the request needs research, identify date/source coverage and uncertainty.
 - Do not schedule, accept a calendar invitation, contact an interviewer, or send a follow-up. Those are separate external actions and require their own explicit applicable authorization.
 

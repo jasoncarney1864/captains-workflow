@@ -3,7 +3,7 @@
 Run with PowerShell 7.4+; no package installation or network access required:
 
 ```powershell
-pwsh -NoProfile -File C:\Repos\captains-workflow\tests\Run-ContractTests.ps1
+pwsh -NoProfile -File tests/Run-ContractTests.ps1
 ```
 
 The suite mutates synthetic briefs/results in an OS temporary directory and removes its two files afterward. It throws on a failed case and returns a nonzero process exit code. It preserves all repository and real mission data.
@@ -19,7 +19,7 @@ Coverage targets:
 Validate a recorded packet separately:
 
 ```powershell
-pwsh -NoProfile -File C:\Repos\captains-workflow\scripts\Test-MissionResult.ps1 -BriefPath C:\Repos\captains-workflow\examples\mailrun-review.json -ResultPath C:\Repos\captains-workflow\examples\mailrun-result.json -Profile mailrun-review
+pwsh -NoProfile -File scripts/Test-MissionResult.ps1 -BriefPath examples/mailrun-review.json -ResultPath examples/mailrun-result.json -Profile mailrun-review
 ```
 
 `Valid = true` means the record is structurally and internally consistent with this review profile. A valid partial/blocked result is not a completed mission. The profile must be selected by the caller, never by an untrusted result. This validator supports only `mailrun-review`; the separate `Test-CareerHandoff.ps1` handles step-4 career packets.
@@ -28,10 +28,10 @@ Limits: the validator cannot authenticate referenced evidence, detect omitted or
 
 ## Career tests
 
-Run `pwsh -NoProfile -File C:\Repos\captains-workflow\tests\Run-CareerTests.ps1` for the separate career-packet checks. The suite covers source/QA readiness, preserved employment IDs, actual byte hashing using a synthetic text file, dependency binding, prepare-only boundaries, exact grant matching, revoked/expired grants, source provenance declarations, uncertain operations, confirmation records, and duplicate-submit prevention. It does not create or visually review an actual resume, operate a browser, authenticate a user grant, or submit an application. See `policies/career-handoffs.md` for profile semantics and audit limits.
+Run `pwsh -NoProfile -File tests/Run-CareerTests.ps1` for the separate career-packet checks. The suite covers source/QA readiness, preserved employment IDs, actual byte hashing using a synthetic text file, dependency binding, prepare-only boundaries, exact grant matching, revoked/expired grants, source provenance declarations, uncertain operations, confirmation records, and duplicate-submit prevention. It does not create or visually review an actual resume, operate a browser, authenticate a user grant, or submit an application. See `policies/career-handoffs.md` for profile semantics and audit limits.
 
 ## Remaining spoke foundations
 
-Run `pwsh -NoProfile -File C:\Repos\captains-workflow\tests\Run-FoundationSpokeTests.ps1` for the Opportunity Fit, Tracker Steward, Interview Prep, and Sitrep synthetic exercises. Each pair of fictional Mission Brief/Result records is validated against the shared schemas; the suite then verifies owner/mission/revision binding, complete acceptance accounting, no grants or proposed Red actions, and a Green-only operation set of `read` and `local_prepare`.
+Run `pwsh -NoProfile -File tests/Run-FoundationSpokeTests.ps1` for the Opportunity Fit, Tracker Steward, Interview Prep, and Sitrep synthetic exercises. Each pair of fictional Mission Brief/Result records is validated against the shared schemas; the suite then verifies owner/mission/revision binding, complete acceptance accounting, no grants or proposed Red actions, and a Green-only operation set of `read` and `local_prepare`.
 
 This is a foundation contract test, not a natural-language-quality or live-integration test. It cannot prove that an agent followed the SKILL instructions, that a tracker/job/interview source was actually available, that cited evidence is truthful, or that a host will block an undeclared external action.
